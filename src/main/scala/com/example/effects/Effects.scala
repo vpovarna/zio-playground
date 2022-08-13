@@ -2,6 +2,7 @@ package com.example.effects
 
 import scala.concurrent.Future
 import scala.io.StdIn.readLine
+import scala.util.Try
 
 object Effects {
 
@@ -135,10 +136,32 @@ object Effects {
     println(measure(computation))
   }
 
+  /**
+   * A simplified ZIO effect
+   * -> MyZIO has an error channel + resources identified by R
+   *  -> MyZIO datatype because it's a producer of value of type A, it needs to be covariant on type A
+   *  -> because MyZIO consumes R, it means the R is a contravariant
+   *
+   */
+  case class MyZIO[-R, +E, +A](unsafeRun: (R) => Either[E, A]) {
+    def map[B](f: A => B): MyZIO[R, E, B] =
+      MyZIO(r => unsafeRun(r) match {
+        case Left(e) => Left(e)
+        case Right(v) => Right(f(v))
+      })
+
+    def flatMap[R1 <: R, E1 >: E, B](f: A => MyZIO[R1, E1, B]): MyZIO[R1, E1, B] =
+      MyZIO(r => unsafeRun(r) match {
+        case Left(e) => Left(e)
+        case Right(v) => f(v).unsafeRun(r)
+      })
+  }
+
+
   def main(args: Array[String]): Unit = {
     anIoWithSideEffects.unsafeRun()
     inputOutputIO.unsafeRun()
-//    demoComputation()
+    //    demoComputation()
   }
 
 }
