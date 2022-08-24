@@ -1,10 +1,7 @@
 package com.example.effects
 
-import com.example.effects.ZIOEffects.asUnit
 import zio._
 
-import java.rmi.server.UID
-import scala.annotation.tailrec
 import scala.io.StdIn
 
 object ZIOEffects {
