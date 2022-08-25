@@ -2,7 +2,6 @@ package com.example.effects
 
 import scala.concurrent.Future
 import scala.io.StdIn.readLine
-import scala.util.Try
 
 object Effects {
 
