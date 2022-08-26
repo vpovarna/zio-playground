@@ -5,7 +5,7 @@ import zio._
 import java.io.IOException
 
 object Program {
-  lazy val run: ZIO[Any, IOException, Unit] = make().flatMap(_.run)
+  lazy val run = make().flatMap(_.run)
 
   def make(): ZIO[Any, Nothing, Controller] =
     ZIO
@@ -14,6 +14,7 @@ object Program {
         Controller.live,
         Boundary.live,
         Google.live,
-        ConsoleImpl.live
+        ConsoleImpl.live,
+        ZLayer.Debug.tree,
       )
 }
