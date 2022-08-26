@@ -11,9 +11,9 @@ object Program {
     ZIO
       .service[Controller]
       .provide(
-        ControllerImpl.live,
-        BoundaryImpl.live,
-        GoogleImpl.live,
+        Controller.live,
+        Boundary.live,
+        Google.live,
         ConsoleImpl.live
       )
 }

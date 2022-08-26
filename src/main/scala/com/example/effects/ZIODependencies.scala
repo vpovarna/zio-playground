@@ -4,7 +4,7 @@ import zio._
 
 import java.util.concurrent.TimeUnit
 
-object ZIADependencies extends ZIOAppDefault {
+object ZIODependencies extends ZIOAppDefault {
 
   // Pass dependencies to ZIO Effects
 

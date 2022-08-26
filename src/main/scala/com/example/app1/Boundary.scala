@@ -6,11 +6,12 @@ trait Boundary {
   def doesGoogleHaveEvenAmountOfPicturesOf(topic: String): ZIO[Any, Nothing, Boolean]
 }
 
-object BoundaryImpl {
-  lazy val live = ZLayer.fromFunction(make _)
-
-  def make(google: Google): Boundary = new Boundary {
-    override def doesGoogleHaveEvenAmountOfPicturesOf(topic: String): ZIO[Any, Nothing, Boolean] =
-      google.countPicturesOf(topic).map(_ % 2 == 0)
-  }
+object Boundary {
+  lazy val live = ZLayer.fromFunction(BoundaryLive.apply _)
 }
+
+case class BoundaryLive(google: Google) extends Boundary {
+  override def doesGoogleHaveEvenAmountOfPicturesOf(topic: String): ZIO[Any, Nothing, Boolean] =
+    google.countPicturesOf(topic).map(_ % 2 == 0)
+}
+
