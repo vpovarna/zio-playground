@@ -1,6 +1,6 @@
 package com.example
 
-import zio.ZIO
+import zio._
 
 package object utils {
 
@@ -9,5 +9,10 @@ package object utils {
       zio
         .tap(a => ZIO.succeed(println(s"[${Thread.currentThread().getName}] $a")))
         .tapErrorCause(cause => ZIO.succeed(println(s"[${Thread.currentThread().getName}][FAIL] $cause")))
+  }
+
+  implicit class ConsoleWrapper(console: Console) {
+    def live: ULayer[Console] =
+      ZLayer.succeed(console)
   }
 }
