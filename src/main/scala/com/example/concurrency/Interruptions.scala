@@ -1,4 +1,4 @@
-package com.example.concurency
+package com.example.concurrency
 
 import zio._
 import com.example.utils._

@@ -2,8 +2,6 @@ package com.example.app1
 
 import zio._
 
-import java.io.IOException
-
 object Program {
   lazy val run = make().flatMap(_.run)
 
