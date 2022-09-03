@@ -138,9 +138,7 @@ object ZIODependencies extends ZIOAppDefault {
   val userSubscriptionLayer: ZLayer[Any, Nothing, UserSubscription] =
     subscriptionRequirementsLayer >>> userSubscriptionServiceLayer
 
-
   // Best practice is to create layers in the companion objects you want to expose.
-
 
   // magic
   val runnableProgram_v2 = program_v2.provide(
