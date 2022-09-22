@@ -96,7 +96,7 @@ object TransactionalEffects extends ZIOAppDefault {
   } yield tArray
 
   // transform
-  val transformArray:
+  val transformArray =
   for {
     tArray <- iterableArray
     _ <- tArray.transform(_ * 10)
