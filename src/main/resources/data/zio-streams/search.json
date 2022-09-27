@@ -1,0 +1,21 @@
+{
+  "zstreams" : [
+    "zio-streams.md"
+  ],
+  "implicits" : [
+    "scala-3-extensions.md"
+  ],
+  "generic" : [
+    "hello-word.md"
+  ],
+  "extensions" : [
+    "scala-3-extensions.md"
+  ],
+  "zio" : [
+    "zio-streams.md"
+  ],
+  "scala" : [
+    "scala-3-extensions.md",
+    "zio-streams.md"
+  ]
+}
